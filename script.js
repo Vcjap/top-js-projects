@@ -1,4 +1,3 @@
-console.log("Hello, World!");
 function getComputerChoice () {
     let choiceNumber = Math.floor(Math.random()*3);
     switch (choiceNumber) {
@@ -10,4 +9,16 @@ function getComputerChoice () {
             return 'scissors';
     }
 }
-console.log(getComputerChoice());
+
+function getHumanChoice () {
+    let humanChoice = prompt("Enter your choice")
+    if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+        // console.log(humanChoice);
+        return humanChoice;
+    }
+    else {
+        console.log("Invalid choice, enter 'rock', 'paper' or 'scissors'");
+        // console.log(humanChoice);
+        getHumanChoice();
+    }
+}
