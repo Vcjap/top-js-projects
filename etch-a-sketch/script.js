@@ -7,12 +7,18 @@ function createGrid(gridSize) {
             const divL2 = document.createElement("div");
             divL2.id = `level2-${j}`;
             divL2.className = "l2";
-            // Add mouse enter and leave hover effect
+            // Add hover effect
+            let opacity = 0;
             divL2.addEventListener("mouseenter", ()=> {
-                divL2.classList.add("hoverEffect");
-            });
-            divL2.addEventListener("mouseleave", ()=> {
-                divL2.classList.remove("hoverEffect");
+                // Select random color
+                let randomColorR = Math.floor(Math.random()*256);
+                let randomColorG = Math.floor(Math.random()*256);
+                let randomColorB = Math.floor(Math.random()*256);
+                // Increase opacity by 0.1
+                opacity = Math.min((opacity*10 + 1)/10,1);
+                // Assign new color and opacity
+                divL2.style.backgroundColor = `rgb(${randomColorR}, ${randomColorG}, ${randomColorB})`;
+                divL2.style.opacity = opacity;
             });
             divL1.appendChild(divL2);
         }
@@ -21,10 +27,11 @@ function createGrid(gridSize) {
 }
 
 function getGridSize () {
-    let gridSize = prompt("Enter the new grid size. Only enter numbers lower than or equal to 100!")
-    // while (!Number.isInteger(gridSize) || gridSize > 100) {
-    //     gridSize = prompt("Enter the new grid size. Only enter numbers lower than or equal to 100!")
-    // }
+    let gridSize = Number(prompt("Enter the new grid size. Only enter numbers lower than or equal to 100!"))
+    while (!Number.isInteger(gridSize) || gridSize > 100 || gridSize <= 0) {
+        alert("Invalid input! Please enter a valid integer.");
+        gridSize = Number(prompt("Enter an integer less than or equal to 100:"));
+    }
     return gridSize;
 }
 

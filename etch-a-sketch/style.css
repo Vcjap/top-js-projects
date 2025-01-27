@@ -20,13 +20,14 @@ body {
     min-width: 960px;
     min-height: 960px;
     flex:1;
+    background-color: black;
 }
 
 .l1 {
     margin: 0;
     display: flex;
     flex:1;
-    background-color: aqua;
+    background-color: white;
 }
 
 .l2 {
@@ -35,7 +36,7 @@ body {
     flex: 1;
     border: 1px solid black;
 }
-
+/* 
 .l1 > .hoverEffect {
     background-color: green;
-}
+} */
