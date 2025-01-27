@@ -21,59 +21,82 @@ function getHumanChoice () { // Gets and returns human choice.
     return humanChoice;
 }
 
-function playRound (humanChoice, computerChoice) { // play a round of the game. Returns score increment
+function playRound (humanChoice, computerChoice, score) { // play a round of the game. Returns score increment
+    const resultSection = document.querySelector("#results")
+    let container = document.createElement("div");
+    let resultRound = document.createElement("span");
+    let currentScore = document.createElement("div");
     if (humanChoice === computerChoice){
-        console.log(`It's a tie! ${humanChoice} equals ${computerChoice}`);
-        return "tie";
+        resultRoundText = `It's a tie! ${humanChoice} equals ${computerChoice}`;
     }
     else if (humanChoice === "rock" && computerChoice === "scissors"
     || humanChoice === "paper" && computerChoice === "rock"
     || humanChoice === "scissors" && computerChoice === "paper"
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-        return "win";
+        resultRoundText = `You win! ${humanChoice} beats ${computerChoice}`;
+        score[0] += 1;
     }
     else if (computerChoice === "rock" && humanChoice === "scissors"
     || computerChoice === "paper" && humanChoice === "rock"
     || computerChoice === "scissors" && humanChoice === "paper"
     ) {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-    }
-    return "lose";
-}
-
-
-
-// playRound(humanSelection, computerSelection);
-
-function playGame () { // play 5 rounds of the game
-    let humanScore = 0, computerScore = 0;
-    for (let game_counter = 0; game_counter < 5; game_counter++) {
-        let humanSelection = getHumanChoice(); // Get human choice
-        let computerSelection = getComputerChoice(); // Get computer choice
-        let result = playRound(humanSelection, computerSelection); //Play a round and return the result
-        switch (result) { // Increment player or computer score based on result
-            case "win":
-                humanScore++;
-                break;
-            case "lose":
-                computerScore++;
-                break;
-            case "tie":
-                break;
-        }
-        console.log(`Human score: ${humanScore}, Computer score: ${computerScore}`);
-    }
-    // Print the result of the game
-    if (humanScore > computerScore) {
-        console.log(`You win the game! ${humanScore} to ${computerScore}`);
-    }
-    else if (humanScore < computerScore) {
-        console.log(`You lose the game! ${humanScore} to ${computerScore}`);
+        resultRoundText = `You lose! ${computerChoice} beats ${humanChoice}`;
+        score[1] += 1;
     }
     else {
-        console.log(`It's a tie! ${humanScore} to ${computerScore}`);
+        resultRound = "logic error";
     }
+
+    // Use the result to create the output message
+    // The output message includes the results of the round and the current score
+    resultRound.textContent = resultRoundText;
+    currentScore.textContent = ` Player: ${score[0]}, Computer: ${score[1]}`;
+    container.appendChild(resultRound);
+    container.appendChild(currentScore);
+    resultSection.appendChild(container);
+
+    // Handle the end-game scenarios. Announce winner and disable buttons
+    if (score[0] == 5) {
+        announceWinner("Human", score);
+        disableButtons();
+    }
+    else if (score[1] == 5) {
+        announceWinner("Computer", score);
+        disableButtons();
+    }
+
 }
 
-playGame();
+// Write text to announce winner
+function announceWinner (winner, score) {
+    const resultSection = document.querySelector("#results");
+    const announcement = document.createElement("div");
+    announcement.textContent = `The winner is: ${winner}`;
+    const finalScoreDiv = document.createElement("div");
+    finalScoreDiv.textContent = `Final Score: Player: ${score[0]}, Computer: ${score[1]}`;
+    resultSection.appendChild(announcement);
+    resultSection.appendChild(finalScoreDiv);
+}
+
+// Disable buttons after the game is done
+function disableButtons () {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.disabled = true;
+    });
+}
+
+// Initialize variables and play game
+scoreHuman = 0;
+scoreComputer = 0;
+score = [scoreHuman,scoreComputer];
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", (event)=> {
+            let humanChoice = event.target.id; // Each button id is equal to the human choice
+            let computerChoice = getComputerChoice();
+            playRound(humanChoice,computerChoice, score);
+    })
+});
+
