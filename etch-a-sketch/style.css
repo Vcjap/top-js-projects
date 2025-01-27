@@ -6,6 +6,12 @@ body {
     height: 100vh;
 }
 
+#introDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
 #mainDiv {
     display: flex;
@@ -21,7 +27,6 @@ body {
     display: flex;
     flex:1;
     background-color: aqua;
-    justify-content: space-between;
 }
 
 .l2 {
