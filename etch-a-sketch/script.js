@@ -27,3 +27,11 @@ cells.forEach((cell) => {
         cell.classList.remove("hoverEffect");
     })
 });
+
+function getGridSize () {
+    let gridSize = prompt("Enter the new grid size. Only enter numbers lower than or equal to 100!")
+    while (!Number.isInteger(gridSize) || gridSize > 100) {
+        gridSize = prompt("Enter the new grid size. Only enter numbers lower than or equal to 100!")
+    }
+    return gridSize;
+}
