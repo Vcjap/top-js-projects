@@ -42,7 +42,6 @@ function deleteGrid () {
     });
 }
 
-
 // Create initial grid
 mainDiv = document.querySelector("#mainDiv");
 const firstGridNum = 16
