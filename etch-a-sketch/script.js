@@ -1,3 +1,4 @@
+// Create grid
 mainDiv = document.querySelector("#mainDiv");
 for (i=0; i<16; i++) {
     const divL1 = document.createElement("div");
@@ -11,3 +12,18 @@ for (i=0; i<16; i++) {
     }
     mainDiv.appendChild(divL1);
 }
+
+// Add a class when the mouse enters the cell
+cells = document.querySelectorAll(".l2");
+cells.forEach((cell) => {
+    cell.addEventListener("mouseenter", ()=> {
+        cell.classList.add("hoverEffect");
+    })
+});
+
+// Remove the class when the mouse exits the cell
+cells.forEach((cell) => {
+    cell.addEventListener("mouseleave", ()=> {
+        cell.classList.remove("hoverEffect");
+    })
+});
