@@ -1,22 +1,31 @@
 
-.mainDiv {
+body {
+    margin: 0;
     display: flex;
-    align-items: space-around;
-    max-width: 960px;
-    max-height: 960px;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+#mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    min-width: 960px;
+    min-height: 960px;
+    flex:1;
 }
 
 .l1 {
-    box-sizing: border-box;
+    margin: 0;
     display: flex;
     flex:1;
-    min-height: 60px;
     background-color: aqua;
-    border: 1px solid black;
     justify-content: space-between;
 }
 
 .l2 {
+    margin: 0;
     display: flex;
     flex: 1;
     border: 1px solid black;
