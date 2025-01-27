@@ -7,6 +7,13 @@ function createGrid(gridSize) {
             const divL2 = document.createElement("div");
             divL2.id = `level2-${j}`;
             divL2.className = "l2";
+            // Add mouse enter and leave hover effect
+            divL2.addEventListener("mouseenter", ()=> {
+                divL2.classList.add("hoverEffect");
+            });
+            divL2.addEventListener("mouseleave", ()=> {
+                divL2.classList.remove("hoverEffect");
+            });
             divL1.appendChild(divL2);
         }
         mainDiv.appendChild(divL1);
@@ -28,25 +35,11 @@ function deleteGrid () {
     });
 }
 
+
 // Create initial grid
 mainDiv = document.querySelector("#mainDiv");
 const firstGridNum = 16
 createGrid(firstGridNum);
-
-// Add a class when the mouse enters the cell
-cells = document.querySelectorAll(".l2");
-cells.forEach((cell) => {
-    cell.addEventListener("mouseenter", ()=> {
-        cell.classList.add("hoverEffect");
-    })
-});
-
-// Remove the class when the mouse exits the cell
-cells.forEach((cell) => {
-    cell.addEventListener("mouseleave", ()=> {
-        cell.classList.remove("hoverEffect");
-    })
-});
 
 btn = document.querySelector("#createGrid");
 btn.addEventListener("click", () => {
