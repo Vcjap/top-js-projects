@@ -6,7 +6,6 @@
     background-color: black;
     height: 600px;
     width: 300px;
-    /* justify-self: center; */
     border-radius: 10px;
 }
 
@@ -51,12 +50,13 @@
     border-radius: 10px;
 }
 
-.operator{
-    background-color:orange;
-}
 .row, .row > * {
     display: flex;
     flex: 1;
+}
+
+.operator{
+    background-color:orange;
 }
 
 .number, .separator{
