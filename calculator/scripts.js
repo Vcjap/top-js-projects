@@ -29,3 +29,25 @@ function operate(n1,operator,n2) {
             return "No operation found";
     }
 }
+
+function updateDisplay(currentValue, newInput) { // Inputs must be strings
+    let newValue = "";
+    if (currentValue == 0 || currentValue == "") {
+        newValue = newInput;
+    }
+    else {
+        newValue = currentValue + newInput;
+    }
+    display.textContent = newValue;
+}
+
+let displayValue = "0";
+
+const display = document.querySelector("#display");
+
+const inputCells = document.querySelectorAll(".input");
+inputCells.forEach((inputCell) => {
+    inputCell.addEventListener(("click"), (event) => {
+        updateDisplay(displayValue,event.target.textContent)}
+    )}
+);
