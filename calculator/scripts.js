@@ -19,9 +19,9 @@ function divide(n1,n2) {
 function operate(n1,operator,n2) {
     const n1num = Number(n1);
     const n2num = Number(n2)
-    const operatorLower = toLowerCase(operator);
+    const operatorLower = operator.toLowerCase();
     let result = 0;
-    switch(operator) {
+    switch(operatorLower) {
         case "+":
             result = add(n1num,n2num);
             break;
