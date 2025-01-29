@@ -4,27 +4,48 @@
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    padding: 0px;
 }
 
 #inputs{
     display:flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: stretch;
     flex: 1;
 }
 
-.row {
+#row1to4, #row5{
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    flex: 4 1 auto;
 }
 
-.row > * {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+#operators{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+#numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.number, .separator{
+    background-color: aqua;
     border: 1px solid black;
-    flex: 1;
+}
+
+.changer {
+    background-color: aquamarine;
+}
+
+.operator {
+    background-color:orange;
+}
+
+#display{
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
 }
