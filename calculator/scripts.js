@@ -12,6 +12,7 @@ function multiply(n1,n2) {
 }
 
 function divide(n1,n2) {
+    if (n2 == 0) return "lol no";
     return Math.round((n1/n2)*100)/100; // The returned number is rounded to 2 decimals
 }
 
@@ -63,10 +64,10 @@ inputCells.forEach((inputCell) => {
 // Update memory based on input type, and return the new memory
 function updateNum (memory, newNum) {
     if (memory.operand === "") {
-        memory.n1 += newNum;
+        memory.n1 = memory.n1 === "0" ? newNum : memory.n1 + newNum;
     }
     else {
-        memory.n2 += newNum;
+        memory.n2 = memory.n2 === "0" ? newNum : memory.n2 + newNum;
     };
     return memory;
 }
@@ -157,8 +158,3 @@ function getInputType(event) {
     return inputType;
 }
 
-
-//To add
-// AC behaviour
-//+/- behavior
-// % behaviour
