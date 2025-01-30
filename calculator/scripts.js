@@ -13,7 +13,7 @@ function multiply(n1,n2) {
 
 function divide(n1,n2) {
     if (n2 == 0) return "lol no";
-    return Math.round((n1/n2)*100)/100; // The returned number is rounded to 2 decimals
+    return n1/n2
 }
 
 // Values are inputed as string, so we convert them to numbers to operate on them
@@ -41,6 +41,7 @@ function operate(n1,operator,n2) {
         default:
             return "No operation found";
     }
+    result = Math.round(result*10000000000)/10000000000; // round result to max 9 figures
     return result.toString();
 }
 
@@ -53,7 +54,7 @@ memory = {
     operand: "",
     n2: "",
 }
-// Add event listeners to all input cells
+// Add event listeners to all input cells and initizialize calculator
 const inputCells = document.querySelectorAll(".input.number, .input.operator, .input.changer");
 inputCells.forEach((inputCell) => {
     inputCell.addEventListener(("click"), (event) => {
@@ -61,6 +62,7 @@ inputCells.forEach((inputCell) => {
         const inputType = getInputType(event);
         memory = manageInput(memory, NewInput, inputType);
         display.textContent = updateDisplay(memory);
+        toggleSeparatorInput(display.textContent);
     })
 })
 
@@ -161,3 +163,23 @@ function getInputType(event) {
     return inputType;
 }
 
+function toggleSeparatorInput(displayValue) {
+    const separatorButton = document.querySelector("#dot");
+    const isSeparatorOnDisplay = displayValue.includes(".") 
+    const isSeparatorDisabled = separatorButton.classList.contains("clickDisabled");
+    if (isSeparatorOnDisplay && isSeparatorDisabled || !isSeparatorOnDisplay && !isSeparatorDisabled) {
+        return;
+    }
+    else if (isSeparatorOnDisplay && !isSeparatorDisabled) {
+        separatorButton.classList.add("clickDisabled")
+        //Disable separator click
+    }
+    else if (!isSeparatorOnDisplay && isSeparatorDisabled) {
+        // Enable separator click
+        separatorButton.classList.remove("clickDisabled")
+    }
+    else {
+        console.log("Error in toggleSeparatorInput");
+    }
+    return;
+}

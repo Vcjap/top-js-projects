@@ -67,3 +67,6 @@
     background-color: aquamarine;
 }
 
+.clickDisabled {
+    pointer-events: none;
+}
