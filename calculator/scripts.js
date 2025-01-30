@@ -54,7 +54,8 @@ const inputCells = document.querySelectorAll(".input.number, .input.operator");
 inputCells.forEach((inputCell) => {
     inputCell.addEventListener(("click"), (event) => {
         const NewInput = event.target.textContent;
-        memory = manageInput(memory, NewInput);
+        const inputType = getInputType(event);
+        memory = manageInput(memory, NewInput, inputType);
         display.textContent = updateDisplay(memory);
     })
 })
@@ -83,13 +84,33 @@ function updateOperand (memory, operand) {
     return memory;
 }
 
-// Check whether the input is a number or an operand, and route it to the right function
-function manageInput(memory, input) {
-    if (isNaN(input) && input !== ".") {
-        memory = updateOperand(memory, input);
+function updateChanger(memory, changer) {
+    switch(changer) {
+        case "AC":
+                memory.n1 = "";
+                memory.operand = "";
+                memory.n2 = "";
+            break;
+        default:
+            console.log("Unexpected changer");
     }
-    else {
-        memory = updateNum(memory, input);
+    return memory;
+}
+
+// Check the input type, and route it to the right function
+function manageInput(memory, input, inputType) {
+    switch(inputType) {
+        case "operator":
+            memory = updateOperand(memory,input);
+            break;
+        case "number":
+            memory = updateNum(memory, input);
+            break;
+        case "changer":
+            memory = updateChanger(memory,input);
+            break;
+        default:
+            console.log("Unexpected inputType");
     }
     return memory
 }
@@ -102,13 +123,22 @@ function updateDisplay(memory) {
     return newValue;
 }
 
-function returnInputType(input) {
+function getInputType(event) {
     let inputType = "";
-    let inputClasses = input.classList;
-    if (inputClasses.match("number")) {
+    let inputClasses = [...event.target.classList]; // we convert the classlist (a DOM object) to an array
+    if (inputClasses.includes("number")) {
         inputType = "number";
-    };
-    else if (inputClasses.match("")){}
+    }
+    else if (inputClasses.includes("operator")){
+        inputType = "operator";
+    }
+    else if (inputClasses.includes("changer")) {
+        inputType = "changer";
+    }
+    else {
+        inputType = "Couldn't find operator class";
+    }
+    return inputType;
 }
 
 
