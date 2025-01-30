@@ -87,9 +87,25 @@ function updateOperand (memory, operand) {
 function updateChanger(memory, changer) {
     switch(changer) {
         case "AC":
-                memory.n1 = "";
+                memory.n1 = "0";
                 memory.operand = "";
                 memory.n2 = "";
+            break;
+        case "+/-":
+                if (memory.n2 === "") {
+                    memory.n1 = (-memory.n1).toString();
+                }
+                else {
+                    memory.n2 = (-memory.n2).toString();
+                }
+            break;
+        case "%":
+            if (memory.n2 === "") {
+                memory.n1 = (memory.n1/100).toString();
+            }
+            else {
+                memory.n2 = (memory.n2/100).toString();
+            }
             break;
         default:
             console.log("Unexpected changer");
