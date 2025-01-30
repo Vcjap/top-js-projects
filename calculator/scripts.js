@@ -40,46 +40,8 @@ function operate(n1,operator,n2) {
     return result.toString();
 }
 
-// function updateDisplay(currentValue, newInput) { // Inputs must be strings
-//     let newValue = "";
-//     const number = "";
-//     const operand = "";
-//     switch(newInput) {
-//         case 0:
-//             newValue = newInput;
-//             break;
-//         case "":
-//             newValue = newInput;
-//             break;
-//         case "+":
-//             newValue = currentValue;
-//             operand = "+";
-//             number = currentValue;
-//             break;
-//         case "=":
-
-//             break;
-//         default:
-//             newValue = currentValue + newInput;
-//     }
-//     display.textContent = newValue;
-//     return number, operand;
-// }
-
 const display = document.querySelector("#display");
 let displayValue = display.textContent;
-
-// Add event listeners to all input cells, and update the display with the value users click
-// const inputCells = document.querySelectorAll(".input.number, .input.separator");
-// inputCells.forEach((inputCell) => {
-//     inputCell.addEventListener(("click"), (event) => {
-//         const newInput = event.target.textContent;
-//         displayValue = display.textContent;
-//         updateDisplay(displayValue,newInput)}
-//     )}
-// );
-
-// ------------- Try 2 -------------
 
 // Initialize memory
 memory = {
@@ -88,7 +50,7 @@ memory = {
     n2: "",
 }
 // Add event listeners to all input cells
-const inputCells = document.querySelectorAll(".input.number, .input.separator, .input.operator");
+const inputCells = document.querySelectorAll(".input.number, .input.operator");
 inputCells.forEach((inputCell) => {
     inputCell.addEventListener(("click"), (event) => {
         const NewInput = event.target.textContent;
@@ -139,3 +101,18 @@ function updateDisplay(memory) {
     memory.n2 !== "" ? newValue = memory.n2 : newValue = memory.n1; 
     return newValue;
 }
+
+function returnInputType(input) {
+    let inputType = "";
+    let inputClasses = input.classList;
+    if (inputClasses.match("number")) {
+        inputType = "number";
+    };
+    else if (inputClasses.match("")){}
+}
+
+
+//To add
+// AC behaviour
+//+/- behavior
+// % behaviour
