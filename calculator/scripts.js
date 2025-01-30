@@ -35,6 +35,9 @@ function operate(n1,operator,n2) {
         case "/":
             result = divide(n1num,n2num);
             break;
+        case "=":
+            result = n1num;
+            break;
         default:
             return "No operation found";
     }
