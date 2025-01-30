@@ -50,7 +50,7 @@ memory = {
     n2: "",
 }
 // Add event listeners to all input cells
-const inputCells = document.querySelectorAll(".input.number, .input.operator");
+const inputCells = document.querySelectorAll(".input.number, .input.operator, .input.changer");
 inputCells.forEach((inputCell) => {
     inputCell.addEventListener(("click"), (event) => {
         const NewInput = event.target.textContent;
